@@ -359,10 +359,11 @@ echo -e "${NC}-------------------------------------------------
 NOTE: To edit vitae.conf, first stop the vitaed daemon,
 then edit the vitae.conf file and save it in nano: (Ctrl-X + Y + Enter),
 then start the vitaed daemon back up:
-to stop:              ${GREEN}vitae-cli stop${NC}
-to start:             ${GREEN}vitaed${NC}
-to edit:              ${GREEN}nano ~/.vitae/vitae.conf ${NC}
-to check mn status:   ${GREEN}vitae-cli masternode status${NC}
+to stop:                   ${GREEN}vitae-cli stop${NC}
+to start:                  ${GREEN}vitaed${NC}
+to edit:                   ${GREEN}nano ~/.vitae/vitae.conf ${NC}
+to check mn status:        ${GREEN}vitae-cli getmasternodestatus${NC}
+ti check wallet status:    ${GREEN}vitae-cli getinfo${NC}
 ========================================================================
 To monitor system resource utilization and running processes:
                    ${GREEN}htop${NC}

@@ -152,7 +152,6 @@ sudo ufw allow ssh
 echo -ne '[###########        ] (60%)\r'
 {
 sudo ufw allow $PORT/tcp
-sudo ufw allow $RPC/tcp
 } &> /dev/null
 echo -ne '[###############    ] (80%)\r'
 {
@@ -241,7 +240,7 @@ done
     
 #Adding bootstrap files 
 
-cd ~/.vitae/ && rm -rf backups  banlist.dat  blocks  chainstate  database  db.log  debug.log  fundamentalnode.conf  .lock   mncache.dat  peers.dat  sporks vitaed.pid  VitaeSnapshot-latest.zip  zerocoin
+cd ~/.vitae/ && rm -rf banlist.dat  blocks  chainstate  database  db.log  debug.log  fundamentalnode.conf  .lock   mncache.dat  peers.dat  sporks vitaed.pid  VitaeSnapshot-latest.zip 
 cd ~/.vitae/ && wget ${BOOTSTRAP_LINK}
 cd ~/.vitae/ && unzip VitaeSnapshot-latest.zip
 

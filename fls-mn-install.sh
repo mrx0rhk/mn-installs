@@ -1,13 +1,13 @@
 
 #!/bin/bash
 #
-# Vitae Masternode Setup Script V1.0 for Ubuntu 16/18 LTS
+# FLits Masternode Setup Script V1.0 for Ubuntu 16/18 LTS
 #by mrx0rhk
 # Script will attempt to autodetect primary public IP address
 # and generate masternode private key unless specified in command line
 #
 # Usage:
-# bash vitae-mn-install.sh
+# bash fls-mn-install.sh
 #
 
 

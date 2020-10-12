@@ -229,7 +229,7 @@ EOF
 sleep 7
 while true;do
     echo -e "${YELLOW}Generating masternode private key...${NC}"
-    genkey=$(flits-cli masternode genkey)
+    genkey=$(flits-cli createmasternodekey)
     if [ "$genkey" ]; then
         break
     fi

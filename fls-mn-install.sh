@@ -198,7 +198,7 @@ wget ${COIN_ARH}
 tar xvzf "${COIN_TGZ}"
 cd /root/fls-2.0.0/bin/  2>/dev/null  >/dev/null
 sudo chmod -R 755 flits-cli  2>/dev/null  >/dev/null
-sudo chmod -R 755 slitsd  2>/dev/null  >/dev/null
+sudo chmod -R 755 flitsd  2>/dev/null  >/dev/null
 cp -p -r flitsd /usr/local/bin  2>/dev/null  >/dev/null
 cp -p -r flits-cli /usr/local/bin  2>/dev/null  >/dev/null
 flits-cli stop  2>/dev/null  >/dev/null

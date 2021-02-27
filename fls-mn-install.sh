@@ -16,7 +16,7 @@ declare -r COIN_DAEMON="${COIN_NAME}d"
 declare -r COIN_CLI="${COIN_NAME}-cli"
 declare -r COIN_PATH='/usr/local/bin'
 #declare -r BOOTSTRAP_LINK='###'
-declare -r COIN_ARH='https://github.com/flitsnode/flits-core/releases/download/2.0.0/fls-2.0.0-x86_64-linux-gnu.tar.gz'
+declare -r COIN_ARH='https://github.com/flitsnode/flits-core/releases/download/2.0.1/fls-2.0.1-x86_64-linux-gnu.tar.gz'
 declare -r COIN_TGZ=$(echo ${COIN_ARH} | awk -F'/' '{print $NF}')
 declare -r CONFIG_FILE="fls.conf"
 declare -r CONFIG_FOLDER="${HOME}/.fls"
@@ -61,7 +61,7 @@ genkey=$1
 clear
 
 echo -e "${GREEN}
-  ---------- FLITS MASTERNODE INSTALLER -----------
+  -------- FLITS 2.0.1 MASTERNODE INSTALLER ---------
  |                                                  |
  |                                                  |
  |       The installation will install and run      |
@@ -196,7 +196,7 @@ cd ~
 rm -rf /usr/local/bin/flits*
 wget ${COIN_ARH}
 tar xvzf "${COIN_TGZ}"
-cd /root/fls-2.0.0/bin/  2>/dev/null  >/dev/null
+cd /root/fls-2.0.1/bin/  2>/dev/null  >/dev/null
 sudo chmod -R 755 flits-cli  2>/dev/null  >/dev/null
 sudo chmod -R 755 flitsd  2>/dev/null  >/dev/null
 cp -p -r flitsd /usr/local/bin  2>/dev/null  >/dev/null

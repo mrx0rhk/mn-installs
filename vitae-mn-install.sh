@@ -16,7 +16,7 @@ declare -r COIN_DAEMON="${COIN_NAME}d"
 declare -r COIN_CLI="${COIN_NAME}-cli"
 declare -r COIN_PATH='/usr/local/bin'
 declare -r BOOTSTRAP_LINK='https://downloads.vitae.co/VitaeSnapshot-latest.zip'
-declare -r COIN_ARH='https://github.com/VitaeTeam/Vitae/releases/download/v4.5.0/vitae-4.5.0-x86_64-linux-gnu.tar.gz'
+declare -r COIN_ARH='https://github.com/VitaeTeam/Vitae/releases/download/v4.6.3/vitae-4.6.3-x86_64-linux-gnu.tar.gz'
 declare -r COIN_TGZ=$(echo ${COIN_ARH} | awk -F'/' '{print $NF}')
 declare -r CONFIG_FILE="${COIN_NAME}.conf"
 declare -r CONFIG_FOLDER="${HOME}/.${COIN_NAME}"
@@ -194,7 +194,7 @@ cd ~
 rm -rf /usr/local/bin/vitae*
 wget ${COIN_ARH}
 tar xvzf "${COIN_TGZ}"
-cd /root/vitae-4.5.0/bin/  2>/dev/null  >/dev/null
+cd /root/vitae-4.6.3/bin/  2>/dev/null  >/dev/null
 sudo chmod -R 755 vitae-cli  2>/dev/null  >/dev/null
 sudo chmod -R 755 vitaed  2>/dev/null  >/dev/null
 cp -p -r vitaed /usr/local/bin  2>/dev/null  >/dev/null
@@ -295,21 +295,46 @@ addnode=95.217.212.54:8765
  
 EOF
 
-vitaed -daemon 2>/dev/null  >/dev/null
-	
-#Finally, starting daemon with new vitae.conf
+sleep 3
+ 
+#config systemd & service
 
-printf '#!/bin/bash\nif [ ! -f "~/.vitae/vitae.pid" ]; then /usr/local/bin/vitaed -daemon ; fi' > /root/vitaeautostart.sh
+ cat << EOF > /etc/systemd/system/$COIN_NAME.service
+[Unit]
+Description=$COIN_NAME service
+After=network.target
+[Service]
+User=root
+Group=root
+Type=forking
+#PIDFile=$CONFIG_FOLDER/$COIN_NAME.pid
+ExecStart=$COIN_PATH$COIN_DAEMON -daemon -conf=$CONFIG_FOLDER/$CONFIG_FILE -datadir=$CONFIG_FOLDER
+ExecStop=-$COIN_PATH$COIN_CLI -conf=$CONFIG_FOLDER/$CONFIG_FILE -datadir=$CONFIG_FOLDER stop
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=10s
+StartLimitInterval=120s
+StartLimitBurst=5
 
-cd /root
+[Install]
+WantedBy=multi-user.target
+EOF
 
-sudo chmod 755 vitaeautostart.sh
+  systemctl daemon-reload
+  sleep 3
+  systemctl enable $COIN_NAME.service
+  systemctl start $COIN_NAME.service >/dev/null 2>&1
 
-#Setting auto start cron job for vitae
-if ! crontab -l | grep "vitaeautostart.sh"; then
-    (crontab -l ; echo "*/5 * * * * /root/vitaeautostart.sh")| crontab -
-fi
-
+  if [[ -z "$(ps axo cmd:100 | egrep $COIN_DAEMON)" ]]; then
+    echo -e "${RED}$COIN_NAME is not running${NC}, please investigate. You should start by running the following commands as root:"
+    echo -e "${GREEN}systemctl start $COIN_NAME.service"
+    echo -e "systemctl status $COIN_NAME.service"
+    echo -e "less /var/log/syslog${NC}"
+    exit 1
+  fi
+  
+systemctl start $COIN_NAME.service
 
 echo -e "========================================================================
 ${GREEN}Vitae Masternode setup is complete!${NC}

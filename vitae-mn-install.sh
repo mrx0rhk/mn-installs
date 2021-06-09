@@ -15,7 +15,7 @@ declare -r COIN_NAME='vitae'
 declare -r COIN_DAEMON="${COIN_NAME}d"
 declare -r COIN_CLI="${COIN_NAME}-cli"
 declare -r COIN_PATH='/usr/local/bin/'
-declare -r BOOTSTRAP_LINK='https://downloads.vitae.co/VitaeSnapshot-latest.zip'
+declare -r BOOTSTRAP_LINK='https://gir.sqdmc.net/dev/vitae/snapshot.zip'
 declare -r COIN_ARH='https://github.com/VitaeTeam/Vitae/releases/download/v4.6.3/vitae-4.6.3-x86_64-linux-gnu.tar.gz'
 declare -r COIN_TGZ=$(echo ${COIN_ARH} | awk -F'/' '{print $NF}')
 declare -r CONFIG_FILE="${COIN_NAME}.conf"
@@ -241,9 +241,9 @@ done
     
 #Adding bootstrap files 
 
-#cd ~/.vitae/ && rm -rf banlist.dat  blocks  chainstate  database  db.log  debug.log  fundamentalnode.conf  .lock   mncache.dat  peers.dat  sporks vitaed.pid  VitaeSnapshot-latest.zip 
-#cd ~/.vitae/ && wget ${BOOTSTRAP_LINK}
-#cd ~/.vitae/ && unzip VitaeSnapshot-latest.zip
+cd ~/.vitae/ && rm -rf banlist.dat  blocks  chainstate  database  db.log  debug.log  fundamentalnode.conf  .lock   mncache.dat  peers.dat  sporks vitaed.pid  VitaeSnapshot-latest.zip 
+cd ~/.vitae/ && wget ${BOOTSTRAP_LINK}
+cd ~/.vitae/ && unzip VitaeSnapshot-latest.zip
 
 #sleep 5 
 

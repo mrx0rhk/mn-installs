@@ -14,7 +14,7 @@
 declare -r COIN_NAME='vitae'
 declare -r COIN_DAEMON="${COIN_NAME}d"
 declare -r COIN_CLI="${COIN_NAME}-cli"
-declare -r COIN_PATH='/usr/local/bin'
+declare -r COIN_PATH='/usr/local/bin/'
 declare -r BOOTSTRAP_LINK='https://downloads.vitae.co/VitaeSnapshot-latest.zip'
 declare -r COIN_ARH='https://github.com/VitaeTeam/Vitae/releases/download/v4.6.3/vitae-4.6.3-x86_64-linux-gnu.tar.gz'
 declare -r COIN_TGZ=$(echo ${COIN_ARH} | awk -F'/' '{print $NF}')

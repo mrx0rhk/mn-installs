@@ -241,9 +241,9 @@ done
     
 #Adding bootstrap files 
 
-cd ~/.vitae/ && rm -rf banlist.dat  blocks  chainstate  database  db.log  debug.log  fundamentalnode.conf  .lock   mncache.dat  peers.dat  sporks vitaed.pid  VitaeSnapshot-latest.zip 
+cd ~/.vitae/ && rm -rf banlist.dat  blocks  chainstate  database  db.log  debug.log  fundamentalnode.conf  .lock   mncache.dat  peers.dat  sporks vitaed.pid  VitaeSnapshot-latest.zip snapshot.zip
 cd ~/.vitae/ && wget ${BOOTSTRAP_LINK}
-cd ~/.vitae/ && unzip VitaeSnapshot-latest.zip
+cd ~/.vitae/ && unzip snapshot.zip
 
 #sleep 5 
 

@@ -333,8 +333,11 @@ EOF
     echo -e "less /var/log/syslog${NC}"
     exit 1
   fi
+
   
-systemctl start $COIN_NAME.service
+sleep 5
+
+systemctl start $vitae.service
 
 echo -e "========================================================================
 ${GREEN}Vitae Masternode setup is complete!${NC}
